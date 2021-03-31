@@ -5,6 +5,7 @@ import './App.scss';
 
 const App: React.FC = () => {
     const [dataLoading, setDataLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean>(false);
     const [totalAmount, setTotalAmount] = useState<number | undefined>();
     const [allTransactions, setAllTransactions] = useState<
         ITransaction[] | undefined
@@ -15,9 +16,13 @@ const App: React.FC = () => {
         page = 1,
     ) => {
         try {
-            const data = await fetch(
+            const response = await fetch(
                 `https://resttest.bench.co/transactions/${page}.json`,
-            ).then((response) => response.json());
+            );
+            if (!response.ok) {
+                throw new Error('Bad response');
+            }
+            const data = await response.json();
             transactions = [...transactions, ...data.transactions];
             if (transactions.length < data.totalCount) {
                 getAllTransactions(transactions, page++);
@@ -27,6 +32,7 @@ const App: React.FC = () => {
             }
         } catch (error) {
             console.error(error);
+            setError(true);
             setDataLoading(false);
         }
     };
@@ -57,6 +63,12 @@ const App: React.FC = () => {
                     transactions={allTransactions}
                     totalAmount={totalAmount}
                 />
+            )}
+            {error && (
+                <div className="error">
+                    There was a problem loading your transactions, please
+                    contact support.
+                </div>
             )}
             {dataLoading && <div className="loading-spinner"></div>}
         </div>

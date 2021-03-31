@@ -1,6 +1,7 @@
 $color-theme: #088b8d;
 $color-light: #ffffff;
 $color-bg-light: #efefef;
+$color-error: red;
 
 body {
     background: $color-bg-light;
@@ -19,6 +20,13 @@ body {
         margin: 0 auto;
         text-align: center;
     }
+}
+
+.error {
+    margin: 0 auto;
+    text-align: center;
+    margin: 80px 30px;
+    color: $color-error;
 }
 
 //Table styles
