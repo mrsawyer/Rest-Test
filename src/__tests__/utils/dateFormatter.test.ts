@@ -1,4 +1,4 @@
-import { dateFormatter } from "../dateFormatter";
+import { dateFormatter } from "../../utils/dateFormatter";
 
 describe("currencyFormatter", () => {
   test("Formats date string into correct format", () => {

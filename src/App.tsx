@@ -70,7 +70,7 @@ const App: React.FC = () => {
                     contact support.
                 </div>
             )}
-            {dataLoading && <div className="loading-spinner"></div>}
+            {dataLoading && <div className="loading"> Loading...</div>}
         </div>
     );
 };

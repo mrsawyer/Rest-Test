@@ -1,4 +1,4 @@
-import { currencyFormatter } from "../currencyFormatter";
+import { currencyFormatter } from "../../utils/currencyFormatter";
 
 describe("currencyFormatter", () => {
   test("Formats number into currency string", () => {

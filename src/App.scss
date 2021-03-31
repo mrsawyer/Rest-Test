@@ -29,6 +29,14 @@ body {
     color: $color-error;
 }
 
+.loading {
+    margin: 0 auto;
+    text-align: center;
+    margin: 80px 30px;
+    color: $color-theme;
+    font-size: 24px;
+}
+
 //Table styles
 
 .table {
@@ -53,12 +61,6 @@ body {
             flex: 1;
         }
 
-        .col-date,
-        .col-account {
-            font-weight: 500;
-            color: rgba(0,0,0,0.5);
-        }
-
         .col-amount {
             text-align: right;
             font-size: 16px;
@@ -76,6 +78,11 @@ body {
     .table-row {
         border-bottom: 1px solid $color-bg-light;
         font-size: 14px;
+        .col-date,
+        .col-account {
+            font-weight: 500;
+            color: rgba(0,0,0,0.5);
+        }
         &.income > div{
             color: $color-theme;
         }

@@ -2,17 +2,17 @@
 
 ## Assumptions
 - That totalCount is an accurate representation of # of transactions in the db
-- That there is not an excessively large number of transactions (therefore no need to consider infinite scroll or pagination)
+- That there is not an overly large number of transactions (therefore no need to consider infinite scroll or pagination)
 - That the alternate row colors are related to income vs expense (this would ideally be confirmed with a PM or designer)
+- That currency & date are formatted according to en-US
 - Fetch is limited in browser compatibility so if that is important consider axios
 
-
-## Ticket Breakdown
+## Potential Ticket Breakdown
 - Set up project
 - Create wireframe components
 - Set up API request
 - Create shared utils
-- Add Tests where necessary
+- Styling
 
 ## TODOs
 - Better error handling
