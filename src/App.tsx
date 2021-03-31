@@ -10,7 +10,10 @@ const App: React.FC = () => {
         ITransaction[] | undefined
     >(undefined);
 
-    const getAllTransactions = async (transactions: any = [], page = 1) => {
+    const getAllTransactions = async (
+        transactions: ITransaction[] = [],
+        page = 1,
+    ) => {
         try {
             const data = await fetch(
                 `https://resttest.bench.co/transactions/${page}.json`,
@@ -39,7 +42,7 @@ const App: React.FC = () => {
                     .map((transaction) => {
                         return Number(transaction.Amount);
                     })
-                    .reduce((a, b) => a + b, 0),
+                    .reduce((a, b) => a + b, 0), //get total sum of all transactions
             );
         }
     }, [allTransactions]);

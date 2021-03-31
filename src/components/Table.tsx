@@ -12,22 +12,26 @@ export const Table: React.FC<TableProps> = ({ transactions, totalAmount }) => {
     const tableColumns = ['date', 'company', 'account', 'amount'];
 
     return (
-        <div className="transaction-table">
+        <div className="table">
             <div className="table-header">
-                {tableColumns.map((column) => {
+                {tableColumns.map((column, i) => {
                     if (column === 'amount') {
                         const formattedAmount = currencyFormatter(totalAmount);
                         return (
-                            <div className={`col-${column}`}>
+                            <div className={`col-${column}`} key={i}>
                                 {formattedAmount}
                             </div>
                         );
                     }
-                    return <div className={`col-${column}`}>{column}</div>;
+                    return (
+                        <div className={`col-${column}`} key={i}>
+                            {column}
+                        </div>
+                    );
                 })}
             </div>
             <div className="table-body">
-                {transactions.map((transaction) => {
+                {transactions.map((transaction, i) => {
                     const amount = Number(transaction.Amount);
                     const formattedAmount = currencyFormatter(amount);
 
@@ -38,6 +42,7 @@ export const Table: React.FC<TableProps> = ({ transactions, totalAmount }) => {
                             className={`table-row ${
                                 amount > 0 ? 'income' : ''
                             }`}
+                            key={i}
                         >
                             <div className="col-date">{formattedDate}</div>
                             <div className="col-company">
