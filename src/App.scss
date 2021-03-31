@@ -20,3 +20,56 @@ body {
         text-align: center;
     }
 }
+
+//Table styles
+
+.transaction-table {
+    margin: 30px;
+    background: $color-light;
+    .table-header,
+    .table-row {
+        display: flex;
+        align-items: center;
+        height: 45px;
+        padding: 0 30px;
+        font-weight: 600;
+        & > div {
+            flex: 3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 30px;
+        }
+        .col-date,
+        .col-amount {
+            flex: 1;
+        }
+
+        .col-date,
+        .col-account {
+            font-weight: 500;
+            color: rgba(0,0,0,0.5);
+        }
+
+        .col-amount {
+            text-align: right;
+            font-size: 16px;
+        }
+    }
+
+    .table-header {
+        text-transform: capitalize;
+        color: $color-theme;
+        font-size: 18px;
+        background: $color-light;
+        box-shadow: 0 15px 30px 5px $color-bg-light;
+    }
+
+    .table-row {
+        border-bottom: 1px solid $color-bg-light;
+        font-size: 14px;
+        &.income > div{
+            color: $color-theme;
+        }
+    }
+}

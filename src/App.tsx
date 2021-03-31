@@ -4,24 +4,45 @@ import { ITransaction } from './contracts/Transaction.interface';
 import './App.scss';
 
 const App: React.FC = () => {
-    const [dataLoading, setDataLoading] = useState<boolean>(false);
+    const [dataLoading, setDataLoading] = useState<boolean>(true);
     const [totalAmount, setTotalAmount] = useState<number | undefined>();
     const [allTransactions, setAllTransactions] = useState<
         ITransaction[] | undefined
-    >([
-        {
-            Date: '2013-12-22',
-            Ledger: 'Phone & Internet Expense',
-            Amount: '-110.71',
-            Company: 'SHAW CABLESYSTEMS CALGARY AB',
-        },
-        {
-            Date: '2013-12-22',
-            Ledger: 'Phone & Internet Expense',
-            Amount: '-110.71',
-            Company: 'SHAW CABLESYSTEMS CALGARY AB',
-        },
-    ]);
+    >(undefined);
+
+    const getAllTransactions = async (transactions: any = [], page = 1) => {
+        try {
+            const data = await fetch(
+                `https://resttest.bench.co/transactions/${page}.json`,
+            ).then((response) => response.json());
+            transactions = [...transactions, ...data.transactions];
+            if (transactions.length < data.totalCount) {
+                getAllTransactions(transactions, page++);
+            } else {
+                setAllTransactions(transactions);
+                setDataLoading(false);
+            }
+        } catch (error) {
+            console.error(error);
+            setDataLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        getAllTransactions();
+    }, []);
+
+    useEffect(() => {
+        if (allTransactions && allTransactions.length > 0) {
+            setTotalAmount(
+                allTransactions
+                    .map((transaction) => {
+                        return Number(transaction.Amount);
+                    })
+                    .reduce((a, b) => a + b, 0),
+            );
+        }
+    }, [allTransactions]);
 
     return (
         <div className="app">
