@@ -25,7 +25,8 @@ const App: React.FC = () => {
             const data = await response.json();
             transactions = [...transactions, ...data.transactions];
             if (transactions.length < data.totalCount) {
-                getAllTransactions(transactions, page++);
+                page = page + 1;
+                getAllTransactions(transactions, page);
             } else {
                 setAllTransactions(transactions);
                 setDataLoading(false);
