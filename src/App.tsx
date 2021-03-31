@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { Table } from './components/Table';
+import { ITransaction } from './contracts/Transaction.interface';
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+    const [dataLoading, setDataLoading] = useState<boolean>(false);
+    const [totalAmount, setTotalAmount] = useState<number | undefined>();
+    const [allTransactions, setAllTransactions] = useState<
+        ITransaction[] | undefined
+    >([
+        {
+            Date: '2013-12-22',
+            Ledger: 'Phone & Internet Expense',
+            Amount: '-110.71',
+            Company: 'SHAW CABLESYSTEMS CALGARY AB',
+        },
+        {
+            Date: '2013-12-22',
+            Ledger: 'Phone & Internet Expense',
+            Amount: '-110.71',
+            Company: 'SHAW CABLESYSTEMS CALGARY AB',
+        },
+    ]);
+
+    return (
+        <div className="app">
+            <header className="app-header">
+                <h1>Bench Test</h1>
+            </header>
+            {!dataLoading && allTransactions && totalAmount && (
+                <Table
+                    transactions={allTransactions}
+                    totalAmount={totalAmount}
+                />
+            )}
+            {dataLoading && <div className="loading-spinner"></div>}
+        </div>
+    );
+};
 
 export default App;
