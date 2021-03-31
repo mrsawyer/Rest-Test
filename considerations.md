@@ -17,3 +17,4 @@
 ## TODOs
 - Better error handling
 - Ideally this would have been designed using a mobile-first approach, this was outside the focus of this assignment
+- Look into breaking out api calls into a store or context to better manage state & testability

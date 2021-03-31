@@ -4,5 +4,5 @@ export function dateFormatter(value: string): string {
         month: 'short',
         day: 'numeric',
     });
-    return formatter.format(new Date(value));
+    return formatter.format(new Date(value + 'T00:00:00'));
 }
