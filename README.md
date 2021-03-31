@@ -3,6 +3,13 @@
 Demonstrate an ability to reason about rudimentary APIs and data transformation, and produce a working user interface.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Alt text](/screenshot.png?raw=true)
+
+## Technologies
+
+React
+Typescript
+
 ## Available Scripts
 
 In the project directory, you can run:
